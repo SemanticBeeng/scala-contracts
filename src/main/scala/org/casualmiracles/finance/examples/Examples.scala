@@ -1,11 +1,11 @@
 package org.casualmiracles.finance.examples
 
+import org.casualmiracles.finance.contracts.Contracts._
+import org.casualmiracles.finance.contracts.Instruments._
 import org.casualmiracles.finance.contracts._
-import Contracts._
-import Instruments._
+import org.casualmiracles.finance.models.Cashflows._
 import org.casualmiracles.finance.models._
-import EberModel._
-import Cashflows._
+
 
 // TODO: Convert to EberModelSuite.scala
 object Examples extends App {
@@ -21,19 +21,21 @@ object Examples extends App {
 
   val c11 = european(mkDate(20),
     zeroCouponBond(mkDate(20), 0.4, USD) and
-      zeroCouponBond(mkDate(30), 9.3, USD) and
-      zeroCouponBond(mkDate(40), 109.3, USD) andGive zeroCouponBond(mkDate(12), 100.0, GBP))
+    zeroCouponBond(mkDate(30), 9.3, USD) and
+    zeroCouponBond(mkDate(40), 109.3, USD) andGive zeroCouponBond(mkDate(12), 100.0, GBP))
 
   println("C1")
-  
-  println( formatPr(evalX(c1), 10) )
+
+  println(formatPr(evalX(c1), 10))
 
   def absorbEx(t: Date, x: Double, k: Currency) = until(constant(t) %> date)(scale(x)(one(k)))
 
   // some examples from the paper
   val t2 = mkDate(10)
 
-  def rainInCyprus = constant(10.0) // something that generates rainfall figures
+  def rainInCyprus = constant(10.0)
+
+  // something that generates rainfall figures
   def interestRate = constant(1.0) // obviously need a real source of interest rates
 
   val c8 = scale(rainInCyprus)(One(GBP))
@@ -45,5 +47,5 @@ object Examples extends App {
   val c12 = until(interestRate %> 6)(american(t1, t2, c10))
 
   println("c1 cashflow")
-  println( formatPr(cashflow(xm, USD, 10)(c11), 100) )
+  println(formatPr(cashflow(xm, USD, 10)(c11), 100))
 }

@@ -1,6 +1,7 @@
 package org.casualmiracles.finance.contracts
 
-import Stream._
+import scala.Stream._
+
 
 trait Zip {
 
@@ -10,8 +11,8 @@ trait Zip {
 
   def zipWithAll[A](f: (A, A) ⇒ A, sa: Stream[A], sb: Stream[A]): Stream[A] = (sa, sb) match {
     case (a #:: as, b #:: bs) ⇒ f(a, b) #:: zipWithAll(f, as, bs)
-    case (as, Empty)          ⇒ as
-    case (Empty, bs)          ⇒ bs
-    case (_, _)               ⇒ Empty
+    case (as, Empty) ⇒ as
+    case (Empty, bs) ⇒ bs
+    case (_, _) ⇒ Empty
   }
 }

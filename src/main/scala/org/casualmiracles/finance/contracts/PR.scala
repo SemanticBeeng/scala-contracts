@@ -23,13 +23,15 @@ trait PRs extends Zip {
     PR(zipWith3(aPr.unPr, bPr.unPr, cPr.unPr)(rvF))
   }
 
-  def formatPr(pr: PR[_], n: Int, margin:String = ""):String = pr.unPr.take(n).zipWithIndex.map( is ⇒ { margin + is._2 + ": " + formatRV(is._1) } ).mkString("")
+  def formatPr(pr: PR[_], n: Int, margin: String = ""): String = pr.unPr.take(n).zipWithIndex.map(is ⇒ {
+    margin + is._2 + ": " + formatRV(is._1)
+  }).mkString("")
 
-  def formatRV(rv: RV[_]):String = {
-    rv.map( x => x match{
-      case d:Double => "%7.3f".format(d)
-      case d:Any => d
-    } ).mkString(" ") + "\n"
+  def formatRV(rv: RV[_]): String = {
+    rv.map(x => x match {
+      case d: Double => "%7.3f".format(d)
+      case d: Any => d
+    }).mkString(" ") + "\n"
   }
 }
 
@@ -37,9 +39,13 @@ object PR extends PRs {
 
   implicit class PrOps(prA: PR[Double]) {
     def %+(prB: PR[Double]): PR[Double] = lift2PrAll((_: Double) + (_: Double), prA, prB)
+
     def %-(prB: PR[Double]): PR[Double] = lift2PrAll((_: Double) - (_: Double), prA, prB)
+
     def %*(prB: PR[Double]): PR[Double] = lift2PrAll((_: Double) * (_: Double), prA, prB)
+
     def abs: PR[Double] = liftPr((d: Double) ⇒ math.abs(d), prA)
+
     def signum: PR[Double] = liftPr((d: Double) ⇒ math.signum(d), prA)
   }
 }

@@ -1,15 +1,21 @@
 package org.casualmiracles.finance.contracts
 
 object Contracts extends PRs with Zip {
-  
+
   def one = One.apply _
+
   def when = (When.apply _).curried
+
   def upto = Upto.apply _
+
   def anytime = (Anytime.apply _).curried
+
   def until = (Until.apply _).curried
+
   def scale = (Scale.apply _).curried
+
   def cond = (Cond.apply _).curried
-  
+
   implicit def toConstant[T](x: T): Observable[T] = constant(x)
 
   def constant[T](k: T): Observable[T] = Observable((d: Date) ⇒ bigK(k))
@@ -20,6 +26,7 @@ object Contracts extends PRs with Zip {
 
   def konstSlices[T](x: T): Stream[RV[T]] = {
     def nextSlice(sl: Stream[T]): Stream[RV[T]] = sl #:: nextSlice(x #:: sl)
+
     nextSlice(Stream(x))
   }
 

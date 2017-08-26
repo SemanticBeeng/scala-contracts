@@ -12,3 +12,6 @@ At present, the code is a brutal transformation of Anton's work into Scala and i
 All thoughts, suggestions and contributions are most gratefully accepted. Particularly new models, and tests!
 
 For additional information see [Scala Contracts wiki](../../wiki)
+
+##### Version
+Modified : do not delete

@@ -4,6 +4,6 @@ package org.casualmiracles.finance.models
 // 2010 Martin Haugh
 // http://www.columbia.edu/~mh2078/LatticeModelsFE1.pdf
 
-object LatticeFE1Model extends GenericModel with GenericComputations with GeometricInterestRateModel{
+object LatticeFE1Model extends GenericModel with GenericComputations with GeometricInterestRateModel {
 
 }

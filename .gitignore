@@ -2,8 +2,11 @@
 .lib
 .idea
 target
-project/target
-project/project
+
+project/.boot
+project/.sbtboot
+project/.ivy
+
 .cache
 .classpath
 .project
